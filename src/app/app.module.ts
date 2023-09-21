@@ -7,16 +7,21 @@ import { CouterOutputComponent } from './counter/couter-output/couter-output.com
 import { CouterButtonsComponent } from './counter/couter-buttons/couter-buttons.component';
 import {StoreModule} from '@ngrx/store'
 import { counterReducer } from './counter/satate/counter.reducer';
+import { CustomCounterInputComponent } from './counter/custom-counter-input/custom-counter-input.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
     AppComponent,
     CounterComponent,
     CouterOutputComponent,
-    CouterButtonsComponent
+    CouterButtonsComponent,
+    CustomCounterInputComponent,
+    
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     StoreModule.forRoot({counter: counterReducer})
   ],
   providers: [],
