@@ -3,6 +3,7 @@ import { Store } from '@ngrx/store';
 import { CounterState } from '../satate/counter.state';
 import { changeName, customIncrement } from '../satate/counter.actions';
 import { getNameSelector } from '../satate/counter.selector';
+import { AppSate } from 'src/app/state/app.state';
 
 @Component({
   selector: 'app-custom-counter-input',
@@ -13,7 +14,7 @@ export class CustomCounterInputComponent implements OnInit {
 
   name: string;
   constructor(
-    private _store: Store<{counter: CounterState}>
+    private _store: Store<AppSate>
   ){}
 
   ngOnInit(): void {

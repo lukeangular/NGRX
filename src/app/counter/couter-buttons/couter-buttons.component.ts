@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { decrement, increment, reset } from '../satate/counter.actions';
 import { CounterState } from '../satate/counter.state';
+import { AppSate } from 'src/app/state/app.state';
 
 @Component({
   selector: 'app-couter-buttons',
@@ -12,7 +13,7 @@ export class CouterButtonsComponent {
 
   constructor(
     // state structure trying to implemen here
-    private _store: Store<{ counter: CounterState }>
+    private _store: Store<AppSate>
   ) {}
 
   onIncrement(): void {
