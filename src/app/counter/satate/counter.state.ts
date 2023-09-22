@@ -3,7 +3,7 @@ export interface CounterState {
     name: string
 }
 export const initialState: CounterState = {
-    counter: 0,
+    counter: 7,
     name:'Sundar'
 }
 
