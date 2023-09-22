@@ -2,6 +2,7 @@ import { Component, Input,OnInit, OnDestroy } from '@angular/core';
 import {Store} from '@ngrx/store';
 import { CounterState } from '../satate/counter.state';
 import { Subscription } from 'rxjs';
+import { getCounterSelector } from '../satate/counter.selector';
 
 @Component({
   selector: 'app-couter-output',
@@ -17,8 +18,9 @@ export class CouterOutputComponent implements OnInit, OnDestroy  {
 
   ngOnInit(){
     // counter here is from above counter object
-    this.counterSubscription = this._store.select('counter').subscribe((data)=>{
-      this.counter = data.counter
+    this.counterSubscription = this._store.select(getCounterSelector).subscribe((data)=>{
+      console.log("counter console...")
+      this.counter = data
     })
   }
 
