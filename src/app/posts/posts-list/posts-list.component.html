@@ -17,6 +17,7 @@
                     <td>{{data?.description}}</td>
                     <td>
                         <a [routerLink]="['edit', data.id]"  class="btn btn-sm btn-success">Update</a>
+                        <a (click)="deletePost(data.id)" class="btn btn-sm btn-danger">Delete</a>
                     </td>
                 </tr>
             </tbody>
