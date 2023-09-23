@@ -22,7 +22,7 @@ import { AppReducer } from './state/app.state';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    StoreModule.forRoot(AppReducer),
+    StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument(
       {
         maxAge: 25, // number of state it could show (last 25)

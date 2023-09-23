@@ -6,6 +6,8 @@ import { CouterOutputComponent } from "./couter-output/couter-output.component";
 import { CouterButtonsComponent } from "./couter-buttons/couter-buttons.component";
 import { CustomCounterInputComponent } from "./custom-counter-input/custom-counter-input.component";
 import { FormsModule } from "@angular/forms";
+import { StoreModule } from "@ngrx/store";
+import { counterReducer } from "./satate/counter.reducer";
 
 const routes: Routes = [
     {
@@ -23,7 +25,8 @@ const routes: Routes = [
     imports: [
         CommonModule,
         FormsModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+        StoreModule.forFeature('counter', counterReducer)
     ]
 }
 )

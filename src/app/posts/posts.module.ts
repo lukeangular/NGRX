@@ -5,6 +5,8 @@ import { PostsListComponent } from "./posts-list/posts-list.component";
 import { AddPostComponent } from "./add-post/add-post.component";
 import { EditPostComponent } from "./edit-post/edit-post.component";
 import { ReactiveFormsModule } from "@angular/forms";
+import { StoreModule } from "@ngrx/store";
+import { postsReducer } from "./state/posts.reducer";
 
 const routes: Routes = [
     {
@@ -32,7 +34,8 @@ const routes: Routes = [
     imports:[
         CommonModule,
         ReactiveFormsModule,
-        RouterModule.forChild(routes)
+        RouterModule.forChild(routes),
+        StoreModule.forFeature('posts', postsReducer)
     ]
 })
 export class PostsModule{}
