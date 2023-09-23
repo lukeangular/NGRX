@@ -1,4 +1,4 @@
-<a [routerLink]="['/posts/add']" class="btn btn-sm btn-success my-2">Add</a>
+<a [routerLink]="['/posts/add']" class="btn btn-md btn-primary my-2">Add</a>
 <div class="row">
     <div class="col-md-7">
         <table class="table table-striped" *ngIf="posts| async as postData">
@@ -7,6 +7,7 @@
                     <th>Id</th>
                     <th>Title</th>
                     <th>Description</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -14,6 +15,9 @@
                     <td>{{data?.id}}</td>
                     <td>{{data?.title}}</td>
                     <td>{{data?.description}}</td>
+                    <td>
+                        <a [routerLink]="['edit', data.id]"  class="btn btn-sm btn-success">Update</a>
+                    </td>
                 </tr>
             </tbody>
         </table>
