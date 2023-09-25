@@ -8,16 +8,17 @@ import { exhaustMap, map } from "rxjs";
 export class AuthEffects {
     constructor(
         private actions$: Actions,
-        private _authSerice: AuthService
+        private _authService: AuthService
     ) { }
     login$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(loginStart),
             exhaustMap((action) => {
-                return this._authSerice.
+                return this._authService.
                     login(action.email, action.password).
                     pipe(map((data) => {
-                        return loginSuccess();
+                        const user = this._authService.formatUser(data)
+                        return loginSuccess({ user });
                     }))
             })
         )
