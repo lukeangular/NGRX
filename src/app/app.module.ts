@@ -12,12 +12,14 @@ import { environment } from './environments/environment';
 import { AppReducer } from './state/app.state';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
+import { LoadingComponent } from './shared/components/loading/loading.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     HeaderComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -26,7 +28,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
     EffectsModule.forRoot([]),
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(AppReducer),
     StoreDevtoolsModule.instrument(
       {
         maxAge: 25, // number of state it could show (last 25)
