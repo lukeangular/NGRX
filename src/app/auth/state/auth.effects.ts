@@ -2,10 +2,10 @@ import { Injectable } from "@angular/core";
 import { Actions, createEffect, ofType } from "@ngrx/effects";
 import { AuthService } from "src/app/services/auth.service";
 import { loginStart, loginSuccess } from "./auth.actions";
-import { exhaustMap, map } from "rxjs";
+import { catchError, exhaustMap, map, of } from "rxjs";
 import { Store } from "@ngrx/store";
 import { AppSate } from "src/app/state/app.state";
-import { setLoadingSnipper } from "src/app/shared/state/shared.actions";
+import { setErorMessage, setLoadingSnipper } from "src/app/shared/state/shared.actions";
 
 @Injectable()
 export class AuthEffects {
@@ -18,14 +18,22 @@ export class AuthEffects {
         return this.actions$.pipe(
             ofType(loginStart),
             exhaustMap((action) => {
-                this._store.dispatch(setLoadingSnipper({status:true}))
+                this._store.dispatch(setLoadingSnipper({ status: true }))
                 return this._authService.
                     login(action.email, action.password).
                     pipe(map((data) => {
                         const user = this._authService.formatUser(data)
-                        this._store.dispatch(setLoadingSnipper({status:false}))
+                        this._store.dispatch(setLoadingSnipper({ status: false }))
                         return loginSuccess({ user });
-                    }))
+                    }),
+                        catchError((errorResp) => {
+                            this._store.dispatch(setLoadingSnipper({ status: false }))
+                            const errorMesssage = this._authService.getErrorMessage(
+                                errorResp.error.error.message)
+                            console.warn(errorMesssage)
+                            return of(setErorMessage({ message: errorMesssage }))
+                        })
+                    )
             })
         )
     })

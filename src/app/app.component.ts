@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { AppSate } from './state/app.state';
-import { getSharedLoading } from './shared/state/shared.selector';
+import { getErrorMessage, getSharedLoading } from './shared/state/shared.selector';
 
 @Component({
   selector: 'app-root',
@@ -12,7 +12,8 @@ import { getSharedLoading } from './shared/state/shared.selector';
 export class AppComponent implements OnInit {
   title = 'counter';
 
-  showLoading: Observable<boolean>
+  showLoading: Observable<boolean>;
+  errorMessage: Observable<string>;
 
   constructor(
     private _store: Store<AppSate>
@@ -20,5 +21,6 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.showLoading = this._store.select(getSharedLoading)
+    this.errorMessage = this._store.select(getErrorMessage)
   }
 }

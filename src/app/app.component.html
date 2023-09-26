@@ -1,6 +1,7 @@
 <app-header></app-header>
 <app-loading *ngIf="showLoading | async"></app-loading>
 <div class="container my-2">
+  <div class="alert alert-danger" *ngIf="errorMessage | async as error">{{error}}</div>
   <div class="row">
     <div class="col-md-12 text-center">
       <router-outlet></router-outlet>

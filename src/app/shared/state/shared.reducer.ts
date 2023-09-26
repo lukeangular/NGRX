@@ -1,6 +1,7 @@
 import { createReducer, on } from "@ngrx/store"
 import { initialState } from "./shared.state"
-import { setLoadingSnipper } from "./shared.actions"
+import { setErorMessage, setLoadingSnipper } from "./shared.actions"
+import { ofType } from "@ngrx/effects"
 
 const _sharedReducer = createReducer(
     initialState,
@@ -8,6 +9,12 @@ const _sharedReducer = createReducer(
         return {
             ...state,
             showLoading: action.status
+        }
+    }),
+    on(setErorMessage, (state, action)=>{
+        return{
+            ...state,
+            errorMessage: action.message
         }
     })
 )
