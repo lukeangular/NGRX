@@ -1,5 +1,4 @@
 import { createFeatureSelector, createSelector } from "@ngrx/store";
-import { AppSate } from "src/app/state/app.state";
 import { SharedState } from "./shared.state";
 
 export const SHARED_STATE_NAME = 'shared';

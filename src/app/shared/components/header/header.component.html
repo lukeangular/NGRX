@@ -17,8 +17,14 @@
             <li class="nav-item">
                 <a class="nav-link text-light" [routerLink]="['/posts']">Posts</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link text-light" [routerLink]="['/auth']">Auth</a>
+            <li class="nav-item" *ngIf="!(isAthenticated | async)">
+                <a class="nav-link text-light" [routerLink]="['/auth']">Login</a>
+            </li>
+            <li class="nav-item" *ngIf="!(isAthenticated | async)">
+                <a class="nav-link text-light" [routerLink]="['/auth']">Sign Up</a>
+            </li>
+            <li class="nav-item" *ngIf="isAthenticated | async">
+                <a class="nav-link text-light" [routerLink]="['/auth']">Logout</a>
             </li>
         </ul>
     </div>
