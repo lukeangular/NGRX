@@ -13,6 +13,7 @@ import { AppReducer } from './state/app.state';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 import { LoadingComponent } from './shared/components/loading/loading.component';
+import { AuthEffects } from './auth/state/auth.effects';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { LoadingComponent } from './shared/components/loading/loading.component'
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    EffectsModule.forRoot([]),
+    EffectsModule.forRoot([AuthEffects]),
     StoreModule.forRoot(AppReducer),
     StoreDevtoolsModule.instrument(
       {
