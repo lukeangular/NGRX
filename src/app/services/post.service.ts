@@ -11,10 +11,12 @@ export class PostService {
         private _http: HttpClient
     ) { }
 
+    baseAPI = 'https://posts-b8fd6-default-rtdb.firebaseio.com/'
+
 
     // getPost
     getPosts(): Observable<Post[]> {
-        let url = 'https://vue-completecourse.firebaseio.com/posts.json';
+        let url = `${this.baseAPI}posts.json`;
         return this._http.get<Post[]>(url)
             .pipe((
                 map((data) => {
@@ -29,7 +31,7 @@ export class PostService {
 
     // add post
     addPost(post: Post): Observable<{ name: string }> {
-        let url = `https://vue-completecourse.firebaseio.com/posts.json`
+        let url = `${this.baseAPI}posts.json`
         return this._http.post<{ name: string }>(url, post);
     }
 
@@ -38,13 +40,13 @@ export class PostService {
         const postData = {
             [String(post.id)]: { title: post.title, description: post.description },
         };        
-        let url = `https://vue-completecourse.firebaseio.com/posts.json`
+        let url = `${this.baseAPI}posts.json`
         return this._http.patch(url, postData);
     }
 
     // delete post
     deletepost(id: string){
-        let url = `https://vue-completecourse.firebaseio.com/posts/${id}.json`
+        let url = `${this.baseAPI}posts/${id}.json`
         return this._http.delete(url);
     }
 }

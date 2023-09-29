@@ -11,9 +11,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from './environments/environment';
 import { AppReducer } from './state/app.state';
 import { EffectsModule } from '@ngrx/effects';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { AuthEffects } from './auth/state/auth.effects';
+import { AuthTokenInterceptor } from './services/auth-token.interceptor';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,13 @@ import { AuthEffects } from './auth/state/auth.effects';
       }
     )
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthTokenInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
